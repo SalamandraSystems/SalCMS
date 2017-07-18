@@ -2,6 +2,7 @@
 
 namespace app\modules\blog\controllers;
 
+use cms\Application;
 use yii\web\Controller;
 
 /**
@@ -15,6 +16,8 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $app = new Application();
+        echo $app->t;
+        //return $this->render('index');
     }
 }

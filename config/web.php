@@ -12,6 +12,9 @@ $config = [
         'blog' => [
             'class' => 'app\modules\blog\BlogModule',
         ],
+        'admin' => [
+            'class' => 'cms\modules\admin\AdminModule',
+        ],
     ],
     'components' => [
         'request' => [
@@ -54,6 +57,9 @@ $config = [
 
     ],
     'params' => $params,
+    'aliases' => [
+        '@cms' => '@app/cms'
+    ],
 ];
 
 if (YII_ENV_DEV) {
