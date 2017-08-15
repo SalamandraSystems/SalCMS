@@ -11,5 +11,16 @@ namespace cms;
 
 class Controller extends \yii\web\Controller
 {
+    public function init()
+    {
+        if($this->module){
+            if($this->module->id == 'admin'){
+                $adminViewPath =Cms::$app->adminTemplate['layoutPath'].'/views/'.$this->id;
+                $this->setViewPath(Cms::getAlias($adminViewPath));
+            }
+
+        }
+        parent::init();
+    }
 
 }

@@ -7,6 +7,7 @@
  */
 namespace cms\admin;
 
+use cms\Cms;
 use cms\Module as BaseModule;
 
 
@@ -15,4 +16,5 @@ class Module extends BaseModule
     public $controllerNamespace = 'cms\admin\controllers';
 
     public $defaultRoute = 'main';
+
 }

@@ -9,11 +9,12 @@
 namespace cms\admin\controllers;
 
 
+use cms\Cms;
 use cms\Controller;
 
 class MainController extends Controller
 {
     public function actionIndex(){
-        echo 'admin/index';
+        return $this->render('index');
     }
 }
