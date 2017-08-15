@@ -13,7 +13,7 @@ $config = [
             'class' => 'app\modules\blog\BlogModule',
         ],
         'admin' => [
-            'class' => 'cms\modules\admin\AdminModule',
+            'class' => 'cms\admin\Module',
         ],
     ],
     'components' => [
