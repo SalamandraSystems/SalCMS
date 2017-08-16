@@ -54,6 +54,9 @@ $config = [
             'rules' => [
             ],
         ],
+        'assetManager'=>[
+            'forceCopy'=>true
+        ]
 
     ],
     'params' => $params,
