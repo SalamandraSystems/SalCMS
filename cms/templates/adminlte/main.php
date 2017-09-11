@@ -5,7 +5,13 @@
  * Date: 15.08.2017
  * Time: 14:03
  */
+use mdm\admin\components\MenuHelper;
+use yii\bootstrap\Nav;
+use yii\helpers\Html;
+use yii\helpers\Json;
+
 \cms\templates\adminlte\assets\AdminAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -17,32 +23,12 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>AdminLTE 2 | Starter</title>
+        <?= Html::csrfMetaTags() ?>
+        <title><?= Html::encode($this->title) ?></title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <?php $this->head()?>
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-        <!-- Ionicons -->
-        <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-        <!-- Theme style -->
-        <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-        <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-              page. However, you can choose any other skin. Make sure you
-              apply the skin class to the body tag so the changes take effect. -->
-        <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-        <!-- Google Font -->
-        <link rel="stylesheet"
-              href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     </head>
     <!--
     BODY TAG OPTIONS:
@@ -268,23 +254,28 @@
                 <!-- /.search form -->
 
                 <!-- Sidebar Menu -->
-                <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">HEADER</li>
-                    <!-- Optionally, you can add icons to the links -->
-                    <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-                    <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-                    <li class="treeview">
-                        <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-                            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#">Link in level 2</a></li>
-                            <li><a href="#">Link in level 2</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                <?php
+                $callback = function($menu){
+                    $data = Json::decode($menu['data']);
+                    //$data['icon'] = 'ff';//Json::decode($menu['data']);
+                    $icon = '';
+                    if(is_array($data) && array_key_exists('icon',$data)) {
+                        $icon = Html::tag('i','',$data['icon']);
+                    }
+                    return [
+                        'label' => $icon.$menu['name'],
+                        'url' => [$menu['route']],
+                        //'items' => $menu['children']
+                    ];
+                };
+                echo Nav::widget([
+                    'encodeLabels'=>false,
+                    'options'=>[
+                        'class'=>'sidebar-menu'
+                    ],
+                    'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id,null, $callback)
+                ]);
+                ?>
                 <!-- /.sidebar-menu -->
             </section>
             <!-- /.sidebar -->

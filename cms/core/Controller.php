@@ -6,8 +6,10 @@
  * Time: 5:47 PM
  */
 
-namespace cms;
+namespace cms\core;
 
+
+use cms\Cms;
 
 class Controller extends \yii\web\Controller
 {

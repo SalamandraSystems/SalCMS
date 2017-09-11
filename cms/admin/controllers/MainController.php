@@ -10,11 +10,16 @@ namespace cms\admin\controllers;
 
 
 use cms\Cms;
-use cms\Controller;
+use cms\core\Controller;
 
 class MainController extends Controller
 {
     public function actionIndex(){
         return $this->render('index');
+    }
+
+    public function actionLogout(){
+        Cms::$app->user->logout();
+        return $this->goHome();
     }
 }

@@ -2,8 +2,8 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=192.168.111.57;dbname=salamandra-cms',
+    'dsn' => 'mysql:host=localhost;dbname=salamandra-cms',
     'username' => 'root',
-    'password' => '',
+    'password' => 'root',
     'charset' => 'utf8',
 ];

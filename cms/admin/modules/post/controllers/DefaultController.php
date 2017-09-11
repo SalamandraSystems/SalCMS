@@ -1,12 +1,11 @@
 <?php
 
-namespace app\modules\blog\controllers;
+namespace cms\admin\modules\post\controllers;
 
-use cms\Application;
 use yii\web\Controller;
 
 /**
- * Default controller for the `blog-assets` module
+ * Default controller for the `post` module
  */
 class DefaultController extends Controller
 {
@@ -16,8 +15,6 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $app = new Application();
-        echo $app->t;
-        //return $this->render('index');
+        return $this->render('index');
     }
 }
