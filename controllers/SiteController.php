@@ -2,12 +2,13 @@
 
 namespace app\controllers;
 
+use cms\admin\models\LoginForm;
+use cms\admin\models\SignupForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -84,6 +85,21 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionSignup()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            return $this->goBack();
+        }
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Logout action.
      *
@@ -122,5 +138,9 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionBlogger($username){
+        echo $username;
     }
 }

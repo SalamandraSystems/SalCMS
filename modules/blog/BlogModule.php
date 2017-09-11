@@ -12,6 +12,8 @@ class BlogModule extends \yii\base\Module
      */
     public $controllerNamespace = 'app\modules\blog\controllers';
 
+    public $defaultRoute = 'main';
+
     /**
      * @inheritdoc
      */

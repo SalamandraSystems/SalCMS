@@ -1,0 +1,20 @@
+{
+  "name":"Salamandra-Cms",
+  "admin":{
+    "defaultTemplate": "admin-lte",
+    "templates":[
+      {
+        "id":"admin-lte",
+        "name":"Admin LTE",
+        "layout":"main",
+        "layoutPath":"@cms/templates/adminlte"
+      },
+      {
+        "id":"admin",
+        "name":"Admin LTE",
+        "layout":"main",
+        "layoutPath":"@cms/templates/adminlte"
+      }
+    ]
+  }
+}
